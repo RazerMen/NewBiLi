@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="#3B3B3B"
+    android:orientation="vertical">
+    
+    <com.wuliwei.newbilibili.view.CircleImageView
+        android:id="@+id/cehua_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/aa" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignTop="@+id/cehua_massage"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/cehua_image"
+        android:layout_toRightOf="@+id/cehua_image"
+        android:src="@drawable/bili_drawerbg_logined" />
+
+    <TextView
+        android:id="@+id/tv_cehua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cehua_image"
+        android:layout_marginTop="15dp"
+        android:drawableRight="@drawable/ic_lv1"
+        android:paddingLeft="50dp"
+        android:text="未来"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/cehua_massage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignTop="@+id/cehua_image"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/ic_navigation_header_notification" />
+
+</RelativeLayout>
