@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.BannerWebActivity"></activity>
+        <activity android:name=".activity.BannerWebActivity" />
+        <activity android:name=".activity.HuaTiActivity"></activity>
     </application>
 
 </manifest>

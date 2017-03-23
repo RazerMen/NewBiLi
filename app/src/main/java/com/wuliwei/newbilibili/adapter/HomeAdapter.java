@@ -526,6 +526,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public void setData(final List<HomeBean.DataBean.BannerBean> banner_info) {
 
             List<String> imgs = new ArrayList<>();
+            String title = banner_info.get(0).getTitle();
 
             for (int i = 0; i < banner_info.size(); i++) {
                 imgs.add(banner_info.get(i).getImg());
@@ -538,10 +539,14 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 }
             });
 
+
             banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
             //设置标题
-            String[] titles = new String[]{"对象？你尽管抢，抢到算我输"};
-            banner.setBannerTitles(Arrays.asList(titles));
+//            String[] titles = new String[]{"对象？你尽管抢，抢到算我输"};
+            banner.setBannerTitles(Arrays.asList(title));
+
+            //设置手动滑动
+            banner.setViewPagerIsScroll(true);
 
             banner.start();
 

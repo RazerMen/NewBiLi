@@ -11,14 +11,15 @@
         android:id="@+id/ll_titles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="#3B3B3B"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <ImageButton
             android:id="@+id/ib_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
             android:background="@drawable/ucrop_ic_next" />
 
@@ -38,15 +39,16 @@
             android:id="@+id/ib_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:background="@drawable/ic_more_grey_small" />
 
     </LinearLayout>
 
     <FrameLayout
-        android:layout_below="@id/ll_titles"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_titles">
 
         <WebView
             android:id="@+id/webview"
