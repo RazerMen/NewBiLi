@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#3B3B3B">
+
+        <ImageView
+            android:id="@+id/tv_guanzhu"
+            android:layout_marginLeft="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/live_home_follow_anchor" />
+
+        <TextView
+            android:id="@+id/iv_guanzhu"
+            android:layout_below="@id/tv_guanzhu"
+            android:text="关注"
+            android:textSize="10sp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/tv_zhongxin"
+            android:layout_marginLeft="115dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/live_home_live_center" />
+
+        <TextView
+            android:id="@+id/iv_zhongxin"
+            android:layout_below="@id/tv_zhongxin"
+            android:text="中心"
+            android:textSize="10sp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="126dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/tv_sousuo"
+            android:layout_marginLeft="215dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/live_home_search_room" />
+
+        <TextView
+            android:id="@+id/iv_sousuo"
+            android:layout_below="@id/tv_sousuo"
+            android:text="搜索"
+            android:textSize="10sp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="226dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_fenlei"
+            android:layout_marginLeft="305dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/live_home_all_category" />
+
+        <TextView
+            android:id="@+id/tv_fenlei"
+            android:layout_below="@id/iv_fenlei"
+            android:text="分类"
+            android:textSize="10sp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="315dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+</RelativeLayout>
