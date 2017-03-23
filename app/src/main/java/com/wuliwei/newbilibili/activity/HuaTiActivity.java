@@ -63,15 +63,6 @@ public class HuaTiActivity extends BaseActivity {
             adapter = new HuaTiAdapter(this, list);
             listView.setAdapter(adapter);
         }
-
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(HuaTiActivity.this, "11111 == " + position, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-        
     }
 
     @Override

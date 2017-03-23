@@ -21,6 +21,7 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.BannerWebActivity" />
         <activity android:name=".activity.HuaTiActivity" />
+        <activity android:name=".activity.OriginalActivity"></activity>
     </application>
 
 </manifest>

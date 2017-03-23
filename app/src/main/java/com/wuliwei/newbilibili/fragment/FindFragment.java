@@ -17,6 +17,7 @@ import com.github.hymanme.tagflowlayout.tags.ColorfulTagView;
 import com.github.hymanme.tagflowlayout.tags.DefaultTagView;
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.activity.HuaTiActivity;
+import com.wuliwei.newbilibili.activity.OriginalActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.bean.FindBean;
 import com.wuliwei.newbilibili.uitls.AppNet;
@@ -153,13 +154,17 @@ public class FindFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.ll_huodong:
-                Toast.makeText(context, "活动", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "活动", Toast.LENGTH_SHORT).show();
+                intent = new Intent(context,HuaTiActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_heiwu:
                 Toast.makeText(context, "小黑屋", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ll_yuanchuang:
-                Toast.makeText(context, "原创", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "原创", Toast.LENGTH_SHORT).show();
+                intent = new Intent(context,OriginalActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_quanqu:
                 Toast.makeText(context, "全区", Toast.LENGTH_SHORT).show();
