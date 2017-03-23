@@ -12,7 +12,7 @@ public class HuaTiActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+//ds
     }
 
     @Override
