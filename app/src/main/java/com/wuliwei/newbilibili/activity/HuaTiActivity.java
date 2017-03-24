@@ -58,7 +58,7 @@ public class HuaTiActivity extends BaseActivity {
         Log.e("TAG", "解析成功" + huaTiBean.getList());
         list = huaTiBean.getList();
 
-        if(list != null && list.size() > 0) {
+        if (list != null && list.size() > 0) {
             //设置适配器
             adapter = new HuaTiAdapter(this, list);
             listView.setAdapter(adapter);
