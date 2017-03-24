@@ -9,7 +9,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +31,8 @@ public class BannerWebActivity extends BaseActivity {
     LinearLayout llTitles;
     @BindView(R.id.webview)
     WebView webview;
-    @BindView(R.id.progressbar)
-    ProgressBar progressbar;
+//    @BindView(R.id.progressbar)
+//    ProgressBar progressbar;
     @BindView(R.id.activity_web)
     RelativeLayout activityWeb;
 
@@ -91,7 +90,7 @@ public class BannerWebActivity extends BaseActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                progressbar.setVisibility(View.GONE);
+//                progressbar.setVisibility(View.GONE);
             }
         });
 

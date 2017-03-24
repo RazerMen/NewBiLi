@@ -30,6 +30,9 @@ public class AppNet {
     public static String ZH_URL = "http://app.bilibili.com/x/feed/index?appkey=1d8b6e7d45233436&build=501000&idx=1490013261&mobi_app=android&network=wifi&platform=android&pull=true&style=2&ts=1490015599000&sign=af4edc66aef7e443c98c28de2b660aa4";
 
     //分区上面的
-    public static String FQ_URL = "public static final String PARTITION_TAG =\"http://app.bilibili.com/x/v2/region?appkey=1d8b6e7d45233436&build=501000&mobi_app=android&platform=android&ts=1490170066000&sign=88793834edd7dd2977bd2de07b93a9b4";
+//    public static String FQ_URL = "public static final String PARTITION_TAG ="http://app.bilibili.com/x/v2/region?appkey=1d8b6e7d45233436&build=501000&mobi_app=android&platform=android&ts=1490170066000&sign=88793834edd7dd2977bd2de07b93a9b4";
+
+    //追番
+    public static String ZF_URL = "http://bangumi.bilibili.com/api/app_index_page_v4?build=3940&device=phone&mobi_app=iphone&platform=ios";
 
 }
