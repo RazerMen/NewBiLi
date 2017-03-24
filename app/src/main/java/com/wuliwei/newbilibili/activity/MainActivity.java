@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,7 +68,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+//        drawerLayout = new ActionBarDrawerToggle(this,drawerLayout,R.string.)
     }
 
     @Override
@@ -78,7 +79,7 @@ public class MainActivity extends BaseActivity {
 
     private void initAdapter() {
 
-        adapter = new DirectseedingAdapter(getSupportFragmentManager(),fragments);
+        adapter = new DirectseedingAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
 
         //关联viewpager
@@ -107,13 +108,16 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home:
-                Toast.makeText(MainActivity.this, "侧滑菜单", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "侧滑菜单", Toast.LENGTH_SHORT).show();
+                drawerLayout.openDrawer(Gravity.START);
                 break;
             case R.id.iv_head:
-                Toast.makeText(MainActivity.this, "头像", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "头像", Toast.LENGTH_SHORT).show();
+                drawerLayout.openDrawer(Gravity.START);
                 break;
             case R.id.tv_no_login:
-                Toast.makeText(MainActivity.this, "登录", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "登录", Toast.LENGTH_SHORT).show();
+                drawerLayout.openDrawer(Gravity.START);
                 break;
             case R.id.iv_game:
                 Toast.makeText(MainActivity.this, "游戏", Toast.LENGTH_SHORT).show();
