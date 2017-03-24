@@ -1,29 +1,58 @@
 package com.wuliwei.newbilibili.fragment;
 
-import android.graphics.Color;
-import android.view.Gravity;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TextView;
 
+import com.wuliwei.newbilibili.R;
+import com.wuliwei.newbilibili.adapter.RecommendAdapter;
 import com.wuliwei.newbilibili.base.BaseFragment;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by 82390 on 2017/3/22.
  */
 
 public class RecommendFragment extends BaseFragment {
-    private TextView textView;
+
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    private ArrayList<BaseFragment> fragments;
+
+    private RecommendAdapter adapter;
+
     @Override
     public View initView() {
-        textView = new TextView(context);
-        textView.setTextColor(Color.BLUE);
-        textView.setTextSize(20);
-        textView.setGravity(Gravity.CENTER);
-        return textView;
+        View view = View.inflate(context, R.layout.fragment_recommend, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void initData() {
-        textView.setText("推荐");
+        initFragnment();
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        adapter = new RecommendAdapter(getChildFragmentManager(), fragments);
+        viewPager.setAdapter(adapter);
+
+        //关联viewpager
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+    }
+
+    private void initFragnment() {
+        fragments = new ArrayList<>();
+        fragments.add(new ComprehensiveFragment());
+        fragments.add(new DynamicFragment());
     }
 }

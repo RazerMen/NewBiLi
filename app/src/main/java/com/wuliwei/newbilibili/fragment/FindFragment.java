@@ -17,10 +17,12 @@ import com.github.hymanme.tagflowlayout.tags.ColorfulTagView;
 import com.github.hymanme.tagflowlayout.tags.DefaultTagView;
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.activity.AllRegionActivity;
+import com.wuliwei.newbilibili.activity.BannerWebActivity;
 import com.wuliwei.newbilibili.activity.HuaTiActivity;
 import com.wuliwei.newbilibili.activity.OriginalActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.bean.FindBean;
+import com.wuliwei.newbilibili.bean.ShopBean;
 import com.wuliwei.newbilibili.uitls.AppNet;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -62,6 +64,7 @@ public class FindFragment extends BaseFragment {
     ImageButton ibSao;
 
     private List<FindBean.DataBean.ListBean> list;
+    private ShopBean.ResultBean result;
 
     @Override
     public View initView() {
@@ -84,16 +87,27 @@ public class FindFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response, int id) {
-                Log.e("TAG", "成功 ");
                 proceessData(response);
             }
         });
-    }
+        OkHttpUtils.get().url(AppNet.SHOP_URL).id(100).build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.e("TAG", "失败" + e.getMessage());
+            }
 
+            @Override
+            public void onResponse(String response, int id) {
+                okhttp(response);
+            }
+        });
+    }
     private void proceessData(String json) {
         FindBean findBean = JSON.parseObject(json, FindBean.class);
+
         list = findBean.getData().getList();
-        Log.e("TAG", "解析成功==" + list);
+
+        Log.e("TAG", "111111111==" + list);
 
         initColor();
 
@@ -107,6 +121,13 @@ public class FindFragment extends BaseFragment {
         tagAdapter.addAllTags(list);
 
         initListener();
+    }
+
+
+    private void okhttp(String json) {
+        ShopBean shopBean = JSON.parseObject(json, ShopBean.class);
+        result = shopBean.getResult();
+        Log.e("TAG", "222222222" + result);
     }
 
     private void initListener() {
@@ -156,7 +177,7 @@ public class FindFragment extends BaseFragment {
                 break;
             case R.id.ll_huodong:
 //                Toast.makeText(context, "活动", Toast.LENGTH_SHORT).show();
-                intent = new Intent(context,HuaTiActivity.class);
+                intent = new Intent(context, HuaTiActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_heiwu:
@@ -164,19 +185,23 @@ public class FindFragment extends BaseFragment {
                 break;
             case R.id.ll_yuanchuang:
 //                Toast.makeText(context, "原创", Toast.LENGTH_SHORT).show();
-                intent = new Intent(context,OriginalActivity.class);
+                intent = new Intent(context, OriginalActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_quanqu:
 //                Toast.makeText(context, "全区", Toast.LENGTH_SHORT).show();
-                intent = new Intent(context,AllRegionActivity.class);
+                intent = new Intent(context, AllRegionActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_game:
                 Toast.makeText(context, "游戏", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ll_shop:
-                Toast.makeText(context, "商城", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "商城", Toast.LENGTH_SHORT).show();
+                intent = new Intent(context, BannerWebActivity.class);
+                intent.putExtra("title", result.getDescription());
+                intent.putExtra("link", result.getResourceLink());
+                context.startActivity(intent);
                 break;
         }
     }
