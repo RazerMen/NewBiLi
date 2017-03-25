@@ -8,6 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:launchMode="singleInstance"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,7 +23,9 @@
         <activity android:name=".activity.BannerWebActivity" />
         <activity android:name=".activity.HuaTiActivity" />
         <activity android:name=".activity.OriginalActivity" />
-        <activity android:name=".activity.AllRegionActivity"></activity>
+        <activity android:name=".activity.AllRegionActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.HuanCunActivity"></activity>
     </application>
 
 </manifest>

@@ -1,13 +1,16 @@
 package com.wuliwei.newbilibili.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.wuliwei.newbilibili.R;
+import com.wuliwei.newbilibili.activity.LoginActivity;
 import com.wuliwei.newbilibili.bean.JFBean;
 import com.wuliwei.newbilibili.view.MyGridView;
 
@@ -117,7 +120,8 @@ public class ZFAdapter extends RecyclerView.Adapter {
         LinearLayout llFanju;
         @BindView(R.id.gridView)
         MyGridView gridView;
-
+        @BindView(R.id.iv_login)
+        ImageView ivLogin;
 
         public FanJuViewHolder(Context mContext, View itemView) {
             super(itemView);
@@ -129,6 +133,14 @@ public class ZFAdapter extends RecyclerView.Adapter {
             //设置适配器
             fanJuAdapter = new FanJuAdapter(context, head);
             gridView.setAdapter(fanJuAdapter);
+
+            ivLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 }

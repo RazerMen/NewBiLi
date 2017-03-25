@@ -1,14 +1,18 @@
 package com.wuliwei.newbilibili.activity;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -68,11 +72,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-//        drawerLayout = new ActionBarDrawerToggle(this,drawerLayout,R.string.)
+        initMeun();
+
     }
 
     @Override
     protected void initData() {
+
         initFragnment();
         initAdapter();
     }
@@ -85,6 +91,7 @@ public class MainActivity extends BaseActivity {
         //关联viewpager
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
 
     }
 
@@ -104,7 +111,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.iv_home, R.id.iv_head, R.id.tv_no_login, R.id.iv_game, R.id.iv_down, R.id.iv_select, R.id.toolBar, R.id.tabLayout, R.id.appBar, R.id.viewPager, R.id.coordinatorLayout, R.id.nav_view, R.id.drawerLayout})
+    @OnClick({R.id.iv_home, R.id.iv_head, R.id.tv_no_login, R.id.iv_game, R.id.iv_down, R.id.iv_select})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home:
@@ -117,7 +124,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_no_login:
 //                Toast.makeText(MainActivity.this, "登录", Toast.LENGTH_SHORT).show();
-                drawerLayout.openDrawer(Gravity.START);
+//                drawerLayout.openDrawer(Gravity.START);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
                 break;
             case R.id.iv_game:
                 Toast.makeText(MainActivity.this, "游戏", Toast.LENGTH_SHORT).show();
@@ -128,22 +137,58 @@ public class MainActivity extends BaseActivity {
             case R.id.iv_select:
                 Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.toolBar:
-                break;
-            case R.id.tabLayout:
-                break;
-            case R.id.appBar:
-                break;
-            case R.id.viewPager:
-                break;
-            case R.id.coordinatorLayout:
-                break;
-            case R.id.nav_view:
-                break;
-            case R.id.drawerLayout:
-                break;
         }
     }
+
+
+    private void initMeun() {
+
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+
+                        break;
+                    case R.id.big_vip:
+                        Toast.makeText(MainActivity.this, "大vip", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.vip:
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.lixian:
+                        intent = new Intent(MainActivity.this, HuanCunActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.my_shoucang:
+                        intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.lishi:
+                        Toast.makeText(MainActivity.this, "历史", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.guanzhu:
+                        intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.qianbao:
+                        intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.zhuti:
+                        Toast.makeText(MainActivity.this, "主题", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.setting:
+                        Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+    }
+
 
     /**
      * 双击退出
