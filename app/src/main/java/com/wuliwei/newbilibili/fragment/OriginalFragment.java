@@ -86,9 +86,11 @@ public class OriginalFragment extends BaseFragment {
 
         List<YCBean.DataBean> data = ycBean.getData();
 
-        //设置适配器
-        adapter = new YCAdapter(context, data);
-        listView.setAdapter(adapter);
+        if(data != null && data.size() > 0) {
+            //设置适配器
+            adapter = new YCAdapter(context, data);
+            listView.setAdapter(adapter);
+        }
     }
 
     class MyOnRefreshListener implements SwipeRefreshLayout.OnRefreshListener{

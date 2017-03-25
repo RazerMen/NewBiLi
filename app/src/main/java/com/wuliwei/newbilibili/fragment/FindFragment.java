@@ -24,6 +24,8 @@ import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.bean.FindBean;
 import com.wuliwei.newbilibili.bean.ShopBean;
 import com.wuliwei.newbilibili.uitls.AppNet;
+import com.wyt.searchbox.SearchFragment;
+import com.wyt.searchbox.custom.IOnSearchClickListener;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -65,11 +67,13 @@ public class FindFragment extends BaseFragment {
 
     private List<FindBean.DataBean.ListBean> list;
     private ShopBean.ResultBean result;
+    private SearchFragment searchFragment;
 
     @Override
     public View initView() {
         View view = View.inflate(context, R.layout.fragment_find, null);
         ButterKnife.bind(this, view);
+        searchFragment = SearchFragment.newInstance();
         return view;
     }
 
@@ -102,6 +106,7 @@ public class FindFragment extends BaseFragment {
             }
         });
     }
+
     private void proceessData(String json) {
         FindBean findBean = JSON.parseObject(json, FindBean.class);
 
@@ -162,7 +167,14 @@ public class FindFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_search:
-                Toast.makeText(context, "搜索", Toast.LENGTH_SHORT).show();
+                searchFragment.setOnSearchClickListener(new IOnSearchClickListener() {
+                    @Override
+                    public void OnSearchClick(String keyword) {
+                        //这里处理逻辑
+//                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                searchFragment.show(getFragmentManager(), SearchFragment.TAG);
                 break;
             case R.id.ib_sao:
                 Toast.makeText(context, "扫描", Toast.LENGTH_SHORT).show();

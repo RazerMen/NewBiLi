@@ -19,6 +19,8 @@ import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.fragment.FanjuFragment;
 import com.wuliwei.newbilibili.fragment.OriginalFragment;
 import com.wuliwei.newbilibili.fragment.QuanZhanFragment;
+import com.wyt.searchbox.SearchFragment;
+import com.wyt.searchbox.custom.IOnSearchClickListener;
 
 import java.util.ArrayList;
 
@@ -54,6 +56,8 @@ public class OriginalActivity extends BaseActivity {
 
     private OriginalAdapter adapter;
 
+    private SearchFragment searchFragment;
+
     @Override
     protected void initListener() {
 
@@ -63,6 +67,7 @@ public class OriginalActivity extends BaseActivity {
     protected void initData() {
         initFragment();
         initAdapter();
+        searchFragment = SearchFragment.newInstance();
     }
 
     private void initAdapter() {
@@ -100,7 +105,14 @@ public class OriginalActivity extends BaseActivity {
                 Toast.makeText(OriginalActivity.this, "下载", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_sousuo:
-                Toast.makeText(OriginalActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+                searchFragment.setOnSearchClickListener(new IOnSearchClickListener() {
+                    @Override
+                    public void OnSearchClick(String keyword) {
+                        //这里处理逻辑
+//                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);
                 break;
             case R.id.toolBar:
                 break;

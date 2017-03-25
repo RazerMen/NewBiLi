@@ -29,6 +29,8 @@ import com.wuliwei.newbilibili.fragment.PartitionFragment;
 import com.wuliwei.newbilibili.fragment.RecommendFragment;
 import com.wuliwei.newbilibili.fragment.TrackFragment;
 import com.wuliwei.newbilibili.view.CircleImageView;
+import com.wyt.searchbox.SearchFragment;
+import com.wyt.searchbox.custom.IOnSearchClickListener;
 
 import java.util.ArrayList;
 
@@ -70,6 +72,8 @@ public class MainActivity extends BaseActivity {
 
     private DirectseedingAdapter adapter;
 
+    private SearchFragment searchFragment;
+
     @Override
     protected void initListener() {
         initMeun();
@@ -81,6 +85,7 @@ public class MainActivity extends BaseActivity {
 
         initFragnment();
         initAdapter();
+        searchFragment = SearchFragment.newInstance();
     }
 
     private void initAdapter() {
@@ -135,7 +140,15 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(MainActivity.this, "下载", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_select:
-                Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+                searchFragment.setOnSearchClickListener(new IOnSearchClickListener() {
+                    @Override
+                    public void OnSearchClick(String keyword) {
+                        //这里处理逻辑
+//                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);
                 break;
         }
     }
