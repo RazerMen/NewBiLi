@@ -1,5 +1,7 @@
 package com.wuliwei.newbilibili.fragment;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -31,6 +33,8 @@ public class OriginalFragment extends BaseFragment {
 
     @BindView(R.id.listView)
     ListView listView;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private YCAdapter adapter;
 
@@ -38,7 +42,20 @@ public class OriginalFragment extends BaseFragment {
     public View initView() {
         View view = View.inflate(context, R.layout.fragment_yuanchuang, null);
         ButterKnife.bind(this, view);
+
+        initRefresh();
+
         return view;
+    }
+
+    private void initRefresh() {
+
+        //设置刷新的颜色
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+
+        //设置下拉刷新的监听
+        swipeRefreshLayout.setOnRefreshListener(new MyOnRefreshListener());
+
     }
 
     @Override
@@ -58,18 +75,32 @@ public class OriginalFragment extends BaseFragment {
             public void onResponse(String response, int id) {
                 Log.e("TAG", "成功 ");
                 proceessData(response);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
     private void proceessData(String json) {
-        YCBean ycBean = JSON.parseObject(json,YCBean.class);
+        YCBean ycBean = JSON.parseObject(json, YCBean.class);
         Log.e("TAG", "解析成功==" + ycBean.getData().get(0).getTitle());
 
         List<YCBean.DataBean> data = ycBean.getData();
 
         //设置适配器
-        adapter = new YCAdapter(context,data);
+        adapter = new YCAdapter(context, data);
         listView.setAdapter(adapter);
+    }
+
+    class MyOnRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
+
+        @Override
+        public void onRefresh() {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getDataFromNet();
+                }
+            }, 2000);
+        }
     }
 }

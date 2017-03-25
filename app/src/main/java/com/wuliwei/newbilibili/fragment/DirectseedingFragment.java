@@ -70,10 +70,12 @@ public class DirectseedingFragment extends BaseFragment {
             @Override
             public void onResponse(String response, int id) {
                 Log.e("TAG", "成功 ");
+
                 proceessData(response);
 
                 //把刷新隐藏
                 swipeRefreshLayout.setRefreshing(false);
+
             }
         });
     }

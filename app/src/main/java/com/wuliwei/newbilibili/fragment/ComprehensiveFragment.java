@@ -71,7 +71,7 @@ public class ComprehensiveFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response, int id) {
-                Log.e("TAG", "成功 ");
+                Log.e("TAG", "成功123123123123123 ");
                 proceessData(response);
                 //隐藏刷新
                 swipeRefreshLayout.setRefreshing(false);

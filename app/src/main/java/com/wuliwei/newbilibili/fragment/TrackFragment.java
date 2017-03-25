@@ -1,5 +1,7 @@
 package com.wuliwei.newbilibili.fragment;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +27,8 @@ import okhttp3.Call;
 public class TrackFragment extends BaseFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private ZFAdapter adapter;
 
@@ -32,7 +36,20 @@ public class TrackFragment extends BaseFragment {
     public View initView() {
         View view = View.inflate(context, R.layout.fragment_track, null);
         ButterKnife.bind(this, view);
+
+        initRefresh();
+
         return view;
+    }
+
+    private void initRefresh() {
+
+        //设置刷新的颜色
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+
+        //设置下拉刷新的监听
+        swipeRefreshLayout.setOnRefreshListener(new MyOnRefreshListener());
+
     }
 
     @Override
@@ -54,6 +71,7 @@ public class TrackFragment extends BaseFragment {
             public void onResponse(String response, int id) {
                 Log.e("TAG", "成功 ");
                 proceessData(response);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -70,6 +88,18 @@ public class TrackFragment extends BaseFragment {
 
         //设置布局管理器
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+    }
 
+    class MyOnRefreshListener implements SwipeRefreshLayout.OnRefreshListener{
+
+        @Override
+        public void onRefresh() {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getDataFromNet();
+                }
+            }, 2000);
+        }
     }
 }
