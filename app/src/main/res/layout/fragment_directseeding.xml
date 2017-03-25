@@ -4,28 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
- <!--   <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_alignParentBottom="true"
-            android:id="@+id/btn_more"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#3B3B3B"
-            android:text="更多直播"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content" />
 
-    </RelativeLayout>-->
-
-
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

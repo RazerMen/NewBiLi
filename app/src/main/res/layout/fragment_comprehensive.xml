@@ -5,10 +5,17 @@
     android:background="#2C2C2C"
     android:orientation="vertical">
 
-    <com.wuliwei.newbilibili.view.MyGridView
-        android:id="@+id/gridView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2"/>
+        android:layout_height="match_parent">
+
+        <com.wuliwei.newbilibili.view.MyGridView
+            android:id="@+id/gridView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.v4.widget.NestedScrollView>

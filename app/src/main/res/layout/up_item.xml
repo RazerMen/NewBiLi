@@ -12,8 +12,8 @@
 
     <View
         android:background="#3B3B3B"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="5dp"/>
 
 </LinearLayout>

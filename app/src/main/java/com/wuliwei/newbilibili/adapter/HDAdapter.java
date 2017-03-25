@@ -42,7 +42,7 @@ public class HDAdapter extends RecyclerView.Adapter<HDAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         FQDownBean.DataBean.BodyBean bodyBean = datas.get(position);
-        Glide.with(mContext).load(bodyBean.getCover()).crossFade().into(holder.ivGvDra);
+        Glide.with(mContext).load(bodyBean.getCover()).into(holder.ivGvDra);
         holder.tvName.setText(bodyBean.getTitle());
     }
 

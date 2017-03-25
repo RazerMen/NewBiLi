@@ -60,13 +60,6 @@ public class AnimationAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-//        List<FQDownBean.DataBean.BodyBean> body = datas.get(position).getBody();
-
-//        Glide.with(mContext).load(body.get(0).getCover()).crossFade().into(viewHolder.ivGvDra);
-//        viewHolder.tvGvDra.setText(body.get(0).getDanmaku() + "");
-//        viewHolder.tvName.setText(body.get(0).getPlay() + "");
-//        viewHolder.tvTitles.setText(body.get(0).getTitle());
-
         FQDownBean.DataBean.BodyBean bodyBean = datas.get(position);
 
         Glide.with(mContext).load(bodyBean.getCover()).crossFade().into(viewHolder.ivGvDra);
