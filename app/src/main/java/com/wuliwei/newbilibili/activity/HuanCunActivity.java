@@ -17,6 +17,8 @@ import com.wuliwei.newbilibili.base.BaseActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.fragment.CacheFragment;
 import com.wuliwei.newbilibili.fragment.CacheingFragment;
+import com.wyt.searchbox.SearchFragment;
+import com.wyt.searchbox.custom.IOnSearchClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,8 @@ public class HuanCunActivity extends BaseActivity {
 
     private HuanCunAdapter adapter;
 
+    private SearchFragment searchFragment;
+
     @Override
     protected void initListener() {
 
@@ -63,6 +67,8 @@ public class HuanCunActivity extends BaseActivity {
 
         initFragment();
         initAdapter();
+
+        searchFragment = SearchFragment.newInstance();
 
     }
 
@@ -101,7 +107,15 @@ public class HuanCunActivity extends BaseActivity {
                 Toast.makeText(HuanCunActivity.this, "设置", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_select:
-                Toast.makeText(HuanCunActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HuanCunActivity.this, "搜索", Toast.LENGTH_SHORT).show();
+                searchFragment.setOnSearchClickListener(new IOnSearchClickListener() {
+                    @Override
+                    public void OnSearchClick(String keyword) {
+                        //这里处理逻辑
+//                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);
                 break;
         }
     }

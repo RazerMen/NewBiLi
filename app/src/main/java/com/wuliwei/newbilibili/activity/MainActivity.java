@@ -161,7 +161,6 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-
                         break;
                     case R.id.big_vip:
                         Toast.makeText(MainActivity.this, "大vip", Toast.LENGTH_SHORT).show();

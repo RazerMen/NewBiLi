@@ -24,4 +24,12 @@ public class CacheFragment extends BaseFragment {
     public void initData() {
         super.initData();
     }
+
+//    /** 得到系统可用内存 **/
+//    @SuppressLint("NewApi")
+//    private String getMemFree(){
+//        StatFs fs = new StatFs(Environment.getDataDirectory().getPath());
+//        return Formatter.formatFileSize(context, (fs.getAvailableBytes()));
+//    }
+
 }

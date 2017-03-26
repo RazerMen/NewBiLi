@@ -1,6 +1,7 @@
 package com.wuliwei.newbilibili.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.github.hymanme.tagflowlayout.TagAdapter;
 import com.github.hymanme.tagflowlayout.TagFlowLayout;
 import com.github.hymanme.tagflowlayout.tags.ColorfulTagView;
 import com.github.hymanme.tagflowlayout.tags.DefaultTagView;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.activity.AllRegionActivity;
 import com.wuliwei.newbilibili.activity.BannerWebActivity;
@@ -68,6 +71,10 @@ public class FindFragment extends BaseFragment {
     private List<FindBean.DataBean.ListBean> list;
     private ShopBean.ResultBean result;
     private SearchFragment searchFragment;
+    /**
+     * 扫描跳转Activity RequestCode
+     */
+    public static final int REQUEST_CODE = 111;
 
     @Override
     public View initView() {
@@ -177,14 +184,16 @@ public class FindFragment extends BaseFragment {
                 searchFragment.show(getFragmentManager(), SearchFragment.TAG);
                 break;
             case R.id.ib_sao:
-                Toast.makeText(context, "扫描", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "扫描", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CaptureActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.ll_xingqu:
                 Toast.makeText(context, "兴趣", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ll_huati:
 //                Toast.makeText(context, "话题", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, HuaTiActivity.class);
+                intent = new Intent(context, HuaTiActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_huodong:
@@ -232,6 +241,29 @@ public class FindFragment extends BaseFragment {
             DefaultTagView textView = new ColorfulTagView(context);
             textView.setText(list.get(position).getKeyword());
             return textView;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**
+         * 处理二维码扫描结果
+         */
+        if (requestCode == REQUEST_CODE) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Toast.makeText(context, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 }
