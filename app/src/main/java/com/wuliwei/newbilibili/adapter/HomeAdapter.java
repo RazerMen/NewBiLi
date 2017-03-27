@@ -69,6 +69,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
     //放映厅
     public static final int SHOW = 9;
 
+    //推荐主播
+
     //当前的类型
     public int currentType = BANNER;
 
@@ -506,6 +508,9 @@ public class HomeAdapter extends RecyclerView.Adapter {
             tvDrawable.setText(prePosition.getName());
             tvGeshu.setText(prePosition.getCount() + "");
             tvShuaxin.setText(prePosition.getCount() + "条新动态，点击刷新！");
+
+
+
         }
     }
 

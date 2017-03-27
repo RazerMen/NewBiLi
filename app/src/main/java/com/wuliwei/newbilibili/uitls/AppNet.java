@@ -38,4 +38,7 @@ public class AppNet {
     //分区----下面的
     public static String FQDOWN_URL = "http://app.bilibili.com/x/v2/show/region?appkey=1d8b6e7d45233436&build=501000&mobi_app=android&platform=android&ts=1490014674000&sign=93edb7634f38498a60e5c3ad0b8b0974";
 
+    //推荐
+    public static String TUIJIAN_URL = "http://live.bilibili.com/mobile/rooms?_device=android&appkey=1d8b6e7d45233436&area_id=0&build=501000&mobi_app=android&page=1&platform=android&sort=hottest&ts=1490016354000&sign=8cc71690abffd8d3b2c18ef1b548630f";
+
 }

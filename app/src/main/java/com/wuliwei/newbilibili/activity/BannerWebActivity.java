@@ -1,40 +1,40 @@
 package com.wuliwei.newbilibili.activity;
 
+import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.base.BaseActivity;
+import com.wuliwei.newbilibili.uitls.ClipboardUtil;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class BannerWebActivity extends BaseActivity {
 
-    @BindView(R.id.ib_back)
-    ImageButton ibBack;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.ib_more)
-    ImageButton ibMore;
-    @BindView(R.id.ll_titles)
-    LinearLayout llTitles;
+
+    @BindView(R.id.share_toolbar)
+    Toolbar shareToolbar;
+    @BindView(R.id.app_bar_layout)
+    AppBarLayout appBarLayout;
     @BindView(R.id.webview)
     WebView webview;
-//    @BindView(R.id.progressbar)
-//    ProgressBar progressbar;
     @BindView(R.id.activity_web)
-    RelativeLayout activityWeb;
+    LinearLayout activityWeb;
+
+    private String link;
+    private String title;
 
     @Override
     protected void initListener() {
@@ -48,8 +48,16 @@ public class BannerWebActivity extends BaseActivity {
 
     private void getData() {
 
-        String title = getIntent().getStringExtra("title");
-        String link = getIntent().getStringExtra("link");
+        title = getIntent().getStringExtra("title");
+        link = getIntent().getStringExtra("link");
+
+        shareToolbar.setTitle(TextUtils.isEmpty(title) ? "详情" : title);
+
+        setSupportActionBar(shareToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         WebSettings webSettings = webview.getSettings();
         //启用 WebView 中的 Javascript 支持
@@ -97,10 +105,60 @@ public class BannerWebActivity extends BaseActivity {
         if (!TextUtils.isEmpty(link)) {
             webview.loadUrl(link);
         }
-        if (!TextUtils.isEmpty(title)) {
-            tvTitle.setText(title);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.topic_share, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.menu_share:
+                share();
+                break;
+            case R.id.menu_browseropen:
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                startActivity(intent);
+                break;
+            case R.id.menu_copylink:
+                ClipboardUtil.setText(BannerWebActivity.this, link);
+                Toast.makeText(this, "已复制", Toast.LENGTH_SHORT).show();
+                break;
         }
 
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void share() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+        intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + link);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webview.canGoBack() && webview.copyBackForwardList().getSize() > 0
+                && !webview.getUrl().equals(webview.copyBackForwardList().getItemAtIndex(0)
+                .getOriginalUrl())) {
+            webview.goBack();
+        } else {
+            finish();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        webview.destroy();
+        super.onDestroy();
     }
 
     @Override
@@ -108,15 +166,4 @@ public class BannerWebActivity extends BaseActivity {
         return R.layout.activity_banner_web;
     }
 
-    @OnClick({R.id.ib_back, R.id.ib_more})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ib_back:
-                finish();
-                break;
-            case R.id.ib_more:
-                Toast.makeText(BannerWebActivity.this, "更多", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
 }

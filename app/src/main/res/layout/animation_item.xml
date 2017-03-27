@@ -14,6 +14,7 @@
         android:paddingLeft="10dp">
 
         <ImageView
+            android:id="@+id/iv_tupian"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_head_live" />
@@ -66,6 +67,7 @@
         app:image_scale_type="fit_xy"
         app:indicator_height="5dp"
         app:indicator_width="5dp"
+        android:visibility="gone"
         app:is_auto_play="true" />
 
 </LinearLayout>

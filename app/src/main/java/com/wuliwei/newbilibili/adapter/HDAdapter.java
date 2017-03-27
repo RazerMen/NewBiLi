@@ -1,6 +1,7 @@
 package com.wuliwei.newbilibili.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,9 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wuliwei.newbilibili.R;
+import com.wuliwei.newbilibili.activity.BannerWebActivity;
 import com.wuliwei.newbilibili.bean.FQDownBean;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,11 +27,11 @@ import butterknife.ButterKnife;
 
 public class HDAdapter extends RecyclerView.Adapter<HDAdapter.ViewHolder> {
     private final Context mContext;
-    private final List<FQDownBean.DataBean.BodyBean> datas;
+    private final FQDownBean.DataBean datas;
 
-    public HDAdapter(Context mContext, List<FQDownBean.DataBean.BodyBean> body) {
+    public HDAdapter(Context mContext, FQDownBean.DataBean downBean) {
         this.mContext = mContext;
-        this.datas = body;
+        this.datas = downBean;
     }
 
     @Override
@@ -41,14 +41,14 @@ public class HDAdapter extends RecyclerView.Adapter<HDAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        FQDownBean.DataBean.BodyBean bodyBean = datas.get(position);
+        FQDownBean.DataBean.BodyBean bodyBean = datas.getBody().get(position);
         Glide.with(mContext).load(bodyBean.getCover()).into(holder.ivGvDra);
         holder.tvName.setText(bodyBean.getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return datas.getBody().size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,30 +64,15 @@ public class HDAdapter extends RecyclerView.Adapter<HDAdapter.ViewHolder> {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemLiveLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(listener != null) {
-                        listener.onItemClick(itemView,getLayoutPosition());
-                    }
+                    Intent intent = new Intent(mContext, BannerWebActivity.class);
+                    intent.putExtra("title", datas.getBody().get(getLayoutPosition()).getTitle());
+                    intent.putExtra("link", datas.getBody().get(getLayoutPosition()).getUri());
+                    mContext.startActivity(intent);
                 }
             });
         }
-    }
-
-    private OnItemClickListener listener;
-    /**
-     * 点击item接口
-     */
-    public interface OnItemClickListener{
-        void onItemClick(View v,int position);
-    }
-
-    /**
-     * 设置item的点击事件
-     * @param listener
-     */
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.listener = listener;
     }
 }

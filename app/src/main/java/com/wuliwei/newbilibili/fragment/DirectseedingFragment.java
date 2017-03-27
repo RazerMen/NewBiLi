@@ -28,9 +28,12 @@ public class DirectseedingFragment extends BaseFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.swipeRefreshLayout)
+
     SwipeRefreshLayout swipeRefreshLayout;
 
     private HomeAdapter adapter;
+
+    private HomeBean.DataBean data;
 
     @Override
     public View initView() {
@@ -84,14 +87,15 @@ public class DirectseedingFragment extends BaseFragment {
         HomeBean homeBean = JSON.parseObject(json, HomeBean.class);
         Log.e("TAG", "解析成功==" + homeBean.getData().getBanner());
 
-        HomeBean.DataBean data = homeBean.getData();
-
+        data = homeBean.getData();
         //设置适配器
-        adapter = new HomeAdapter(context, data);
+        adapter = new HomeAdapter(context,data);
         recyclerView.setAdapter(adapter);
 
         //设置布局管理器
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+
+
     }
 
     class MyOnRefreshListener implements SwipeRefreshLayout.OnRefreshListener {
