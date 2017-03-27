@@ -1,6 +1,7 @@
 package com.wuliwei.newbilibili.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.bean.ZHBean;
+import com.wuliwei.newbilibili.view.video.DanmkuVideoActivity;
 
 import java.util.List;
 
@@ -52,7 +54,7 @@ public class ZHAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.item_zh, null);
@@ -62,13 +64,24 @@ public class ZHAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZHBean.DataBean dataBean = datas.get(position);
+        final ZHBean.DataBean dataBean = datas.get(position);
 
         Glide.with(mContext).load(dataBean.getCover()).crossFade().into(viewHolder.ivGvDra);
         viewHolder.tvName.setText(dataBean.getTname());
         viewHolder.tvTiao.setText(dataBean.getTid() + "");
         viewHolder.tvTitle.setText(dataBean.getTitle());
         viewHolder.tvZh.setText(dataBean.getPlay() + "");
+
+        viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = dataBean.getUri();
+//                String uri = datas.get(position).getUri();
+                Intent intent = new Intent(mContext, DanmkuVideoActivity.class);
+                intent.putExtra("link",uri);
+                mContext.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

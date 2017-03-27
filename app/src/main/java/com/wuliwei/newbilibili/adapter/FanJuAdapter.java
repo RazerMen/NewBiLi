@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wuliwei.newbilibili.R;
@@ -50,7 +51,7 @@ public class FanJuAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.item_fanju, null);
@@ -63,6 +64,13 @@ public class FanJuAdapter extends BaseAdapter {
         JFBean.ResultBean.AdBean.HeadBean headBean = datas.get(position);
         Glide.with(context).load(headBean.getImg()).crossFade().into(viewHolder.ivGvDra);
         viewHolder.tvTitle.setText(headBean.getTitle());
+
+        viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "111", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return convertView;
     }

@@ -509,8 +509,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
             tvGeshu.setText(prePosition.getCount() + "");
             tvShuaxin.setText(prePosition.getCount() + "条新动态，点击刷新！");
 
-
-
         }
     }
 

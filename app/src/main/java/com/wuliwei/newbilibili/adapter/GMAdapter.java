@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wuliwei.newbilibili.R;
@@ -66,6 +67,13 @@ public class GMAdapter extends BaseAdapter {
         JFBean.ResultBean.SerializingBean serializingBean = datas.get(position);
         Glide.with(mContext).load(serializingBean.getCover()).crossFade().into(viewHolder.ivGvDra);
         viewHolder.tvTitle.setText(serializingBean.getTitle());
+
+        viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "222", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return convertView;
     }

@@ -53,7 +53,7 @@ public class PaintingAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder;
 
@@ -70,6 +70,16 @@ public class PaintingAdapter extends BaseAdapter {
         viewHolder.tvGvTit.setText(livesBean.getTitle());
         viewHolder.tvName.setText(livesBean.getOwner().getName());
         viewHolder.tvGvDra.setText(String.valueOf(livesBean.getOnline()));
+
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String playurl = datas.get(position).getPlayurl();
+                Intent intent = new Intent(mContext, DanmkuVideoActivity.class);
+                intent.putExtra("link", playurl);
+                mContext.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
@@ -88,15 +98,6 @@ public class PaintingAdapter extends BaseAdapter {
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
-
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, DanmkuVideoActivity.class);
-                    intent.putExtra("link",livesBean.getPlayurl());
-                    mContext.startActivity(intent);
-                }
-            });
         }
     }
 }

@@ -92,7 +92,7 @@ public class FQAdapter extends RecyclerView.Adapter {
             currentType = REGION;
         } else if ("topic".equals(downBean.getType())) {
             currentType = HUATI;
-        }else if("activity".equals(downBean.getType())) {
+        } else if ("activity".equals(downBean.getType())) {
             currentType = ACTIVITY;
         }
         return currentType;
@@ -135,21 +135,22 @@ public class FQAdapter extends RecyclerView.Adapter {
 
         private HDAdapter adapter;
 
+        @BindView(R.id.iv_tupian)
+        ImageView ivTupian;
         @BindView(R.id.tv_donghua)
         TextView tvDonghua;
         @BindView(R.id.btn_come)
         Button btnCome;
-        @BindView(R.id.ll_huati)
-        LinearLayout llHuati;
         @BindView(R.id.recyclerView)
         RecyclerView recyclerView;
-        @BindView(R.id.iv_tupian)
-        ImageView imageView;
+        @BindView(R.id.ll_huati)
+        LinearLayout llHuaTi;
+
 
         public ActivityViewHolder(Context mContext, View itemView) {
             super(itemView);
             this.mContext = mContext;
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void setData(FQDownBean.DataBean downBean) {
@@ -167,14 +168,14 @@ public class FQAdapter extends RecyclerView.Adapter {
                 FQUPBean.DataBean dataBean = up.get(i);
 
                 if (substring.equals(up.get(i).getName())) {
-                    Glide.with(mContext).load(dataBean.getLogo()).into(imageView);
+                    Glide.with(mContext).load(dataBean.getLogo()).into(ivTupian);
                 }
             }
 
             //布局管理器
             recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
 
-            llHuati.setOnClickListener(new View.OnClickListener() {
+            llHuaTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 //                    Toast.makeText(mContext, "22222", Toast.LENGTH_SHORT).show();
