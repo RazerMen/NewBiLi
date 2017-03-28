@@ -1,5 +1,6 @@
 package com.wuliwei.newbilibili.activity;
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -17,6 +18,7 @@ import com.wuliwei.newbilibili.adapter.OriginalAdapter;
 import com.wuliwei.newbilibili.base.BaseActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.fragment.FanjuFragment;
+import com.wuliwei.newbilibili.uitls.AppNet;
 import com.wyt.searchbox.SearchFragment;
 import com.wyt.searchbox.custom.IOnSearchClickListener;
 
@@ -104,6 +106,11 @@ public class AllRegionActivity extends BaseActivity {
                     public void OnSearchClick(String keyword) {
                         //这里处理逻辑
 //                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                        String str = AppNet.SOUSUO + keyword + AppNet.SUOSOUDOWN;
+                        Intent intent = new Intent(AllRegionActivity.this, SearchActivity.class);
+                        intent.putExtra("link", str);
+                        intent.putExtra("title", keyword);
+                        startActivity(intent);
                     }
                 });
                 searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);

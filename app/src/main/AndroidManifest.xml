@@ -48,7 +48,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity"
+        <activity
+            android:name=".WelcomeActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:launchMode="singleInstance">
             <intent-filter>
@@ -65,6 +66,8 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.HuanCunActivity" />
         <activity android:name=".view.video.DanmkuVideoActivity" />
+        <activity android:name=".activity.ShoppingActivity" />
+        <activity android:name=".activity.SearchActivity"></activity>
     </application>
 
 </manifest>

@@ -1,20 +1,17 @@
 package com.wuliwei.newbilibili.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wuliwei.newbilibili.R;
-import com.wuliwei.newbilibili.bean.FQDownBean;
-import com.wuliwei.newbilibili.view.video.DanmkuVideoActivity;
-
-import java.util.List;
+import com.wuliwei.newbilibili.bean.ShoppingHomeDownBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,23 +19,23 @@ import butterknife.ButterKnife;
 /**
  * Created by
  * 武立伟
- * 2017/3/24.
+ * 2017/3/27.
  * <p>
- * 作用：分区动画的适配器
+ * 作用：
  */
 
-public class AnimationAdapter extends BaseAdapter {
+public class ShopDownAdapter extends BaseAdapter {
     private final Context mContext;
-    private final List<FQDownBean.DataBean.BodyBean> datas;
+    private final ShoppingHomeDownBean.ResultBean datas;
 
-    public AnimationAdapter(Context mContext, List<FQDownBean.DataBean.BodyBean> body) {
+    public ShopDownAdapter(Context mContext, ShoppingHomeDownBean.ResultBean down) {
         this.mContext = mContext;
-        this.datas = body;
+        this.datas = down;
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return datas.getRecords().size();
     }
 
     @Override
@@ -55,26 +52,22 @@ public class AnimationAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = View.inflate(mContext, R.layout.item_animation, null);
+            convertView = View.inflate(mContext, R.layout.item_shop_down, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        } else {
+        }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        FQDownBean.DataBean.BodyBean bodyBean = datas.get(position);
+        ShoppingHomeDownBean.ResultBean.RecordsBean recordsBean = datas.getRecords().get(position);
 
-        Glide.with(mContext).load(bodyBean.getCover()).crossFade().into(viewHolder.ivGvDra);
-        viewHolder.tvGvDra.setText(bodyBean.getDanmaku() + "");
-        viewHolder.tvName.setText(bodyBean.getPlay() + "");
-        viewHolder.tvTitles.setText(bodyBean.getTitle());
+        Glide.with(mContext).load(recordsBean.getImgUrl()).into(viewHolder.ivGvDra);
+        viewHolder.tvGvTit.setText(recordsBean.getTitle());
+        viewHolder.tvMoney.setText( "￥" + recordsBean.getSalvePrice());
         viewHolder.itemLiveLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String playurl = datas.get(position).getUri();
-                Intent intent = new Intent(mContext, DanmkuVideoActivity.class);
-                intent.putExtra("link", playurl);
-                mContext.startActivity(intent);
+                Toast.makeText(mContext, "位置==" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -84,14 +77,12 @@ public class AnimationAdapter extends BaseAdapter {
     class ViewHolder {
         @BindView(R.id.iv_gv_dra)
         ImageView ivGvDra;
-        @BindView(R.id.tv_titles)
-        TextView tvTitles;
-        @BindView(R.id.tv_name)
-        TextView tvName;
-        @BindView(R.id.tv_gv_dra)
-        TextView tvGvDra;
+        @BindView(R.id.tv_gv_tit)
+        TextView tvGvTit;
         @BindView(R.id.item_live_layout)
         CardView itemLiveLayout;
+        @BindView(R.id.tv_money)
+        TextView tvMoney;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

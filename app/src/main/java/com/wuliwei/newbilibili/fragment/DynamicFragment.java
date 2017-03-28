@@ -1,11 +1,16 @@
 package com.wuliwei.newbilibili.fragment;
 
-import android.graphics.Color;
-import android.view.Gravity;
+import android.content.Intent;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
+import com.wuliwei.newbilibili.R;
+import com.wuliwei.newbilibili.activity.LoginActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by
@@ -17,19 +22,23 @@ import com.wuliwei.newbilibili.base.BaseFragment;
 
 public class DynamicFragment extends BaseFragment {
 
-    private TextView textView;
+    @BindView(R.id.btn_login)
+    Button btnLogin;
 
     @Override
     public View initView() {
-        textView = new TextView(context);
-        textView.setTextSize(20);
-        textView.setTextColor(Color.BLUE);
-        textView.setGravity(Gravity.CENTER);
-        return textView;
+        View view = View.inflate(context, R.layout.fragment_dynamic, null);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void initData() {
-        textView.setText("动态");
+    }
+
+    @OnClick(R.id.btn_login)
+    public void onClick() {
+        Intent intent = new Intent(context, LoginActivity.class);
+        startActivity(intent);
     }
 }

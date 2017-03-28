@@ -23,6 +23,7 @@ import com.wuliwei.newbilibili.activity.AllRegionActivity;
 import com.wuliwei.newbilibili.activity.BannerWebActivity;
 import com.wuliwei.newbilibili.activity.HuaTiActivity;
 import com.wuliwei.newbilibili.activity.OriginalActivity;
+import com.wuliwei.newbilibili.activity.SearchActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.bean.FindBean;
 import com.wuliwei.newbilibili.bean.ShopBean;
@@ -178,7 +179,12 @@ public class FindFragment extends BaseFragment {
                     @Override
                     public void OnSearchClick(String keyword) {
                         //这里处理逻辑
-//                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                        String str = AppNet.SOUSUO + keyword + AppNet.SUOSOUDOWN;
+                        Intent intent = new Intent(context, SearchActivity.class);
+                        intent.putExtra("link", str);
+                        intent.putExtra("title", keyword);
+                        startActivity(intent);
+
                     }
                 });
                 searchFragment.show(getFragmentManager(), SearchFragment.TAG);
@@ -218,11 +224,14 @@ public class FindFragment extends BaseFragment {
                 Toast.makeText(context, "游戏", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ll_shop:
-//                Toast.makeText(context, "商城", Toast.LENGTH_SHORT).show();
+//                intent = new Intent(context, ShoppingActivity.class);
+//                startActivity(intent);
+                String link = "http://bmall.bilibili.com ";
+                String title = "bilibili - 周边商城";
                 intent = new Intent(context, BannerWebActivity.class);
-                intent.putExtra("title", result.getDescription());
-                intent.putExtra("link", result.getResourceLink());
-                context.startActivity(intent);
+                intent.putExtra("link", link);
+                intent.putExtra("title", title);
+                startActivity(intent);
                 break;
         }
     }

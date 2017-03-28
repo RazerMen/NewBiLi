@@ -28,6 +28,7 @@ import com.wuliwei.newbilibili.fragment.FindFragment;
 import com.wuliwei.newbilibili.fragment.PartitionFragment;
 import com.wuliwei.newbilibili.fragment.RecommendFragment;
 import com.wuliwei.newbilibili.fragment.TrackFragment;
+import com.wuliwei.newbilibili.uitls.AppNet;
 import com.wuliwei.newbilibili.view.CircleImageView;
 import com.wyt.searchbox.SearchFragment;
 import com.wyt.searchbox.custom.IOnSearchClickListener;
@@ -146,6 +147,11 @@ public class MainActivity extends BaseActivity {
                     public void OnSearchClick(String keyword) {
                         //这里处理逻辑
 //                Toast.makeText(ToolBarActivity.this, keyword, Toast.LENGTH_SHORT).show();
+                        String str = AppNet.SOUSUO + keyword + AppNet.SUOSOUDOWN;
+                        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                        intent.putExtra("link", str);
+                        intent.putExtra("title", keyword);
+                        startActivity(intent);
                     }
                 });
                 searchFragment.show(getSupportFragmentManager(), SearchFragment.TAG);

@@ -41,4 +41,16 @@ public class AppNet {
     //推荐
     public static String TUIJIAN_URL = "http://live.bilibili.com/mobile/rooms?_device=android&appkey=1d8b6e7d45233436&area_id=0&build=501000&mobi_app=android&page=1&platform=android&sort=hottest&ts=1490016354000&sign=8cc71690abffd8d3b2c18ef1b548630f";
 
+    //购物车
+    public static String SHOPPINGHOME = "http://bmall.bilibili.com/apiSecond/public/getModelData.do?mark_code=7f7d1ac0796211e6ab5352223301d29a";
+
+    //购物车下面的数据
+    public static String SHOPPINGHOMEDOWN = "http://bmall.bilibili.com/api/product/list.do?pn=1&ps=6";
+
+    //搜索
+    public static String SOUSUO = "http://app.bilibili.com/x/v2/search?appkey=1d8b6e7d45233436&build=501000&duration=0&keyword=";
+
+    //下面字段的搜索
+    public static String SUOSOUDOWN = "&mobi_app=android&platform=android&pn=1&ps=20";
+
 }
