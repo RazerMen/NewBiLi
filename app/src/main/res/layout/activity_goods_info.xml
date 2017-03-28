@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C2C2C"
+    android:orientation="vertical"
+    tools:context="com.wuliwei.newbilibili.activity.GoodsInfoActivity">
+
+    <!--标题栏-->
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3B3B3B"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/ib_good_info_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ucrop_ic_next" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="130dp"
+            android:text="商品详情"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_tupian"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/aa" />
+
+        <TextView
+            android:id="@+id/tv_good_info_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/tv_good_info_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="￥150.00"
+            android:textColor="#ed3f3f"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:background="#3B3B3B">
+
+        <com.wuliwei.newbilibili.view.AddSubView
+            android:id="@+id/addSubView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="5dp" />
+
+        <Button
+            android:id="@+id/btn_good_info_addcart"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/add_cart_bg_selector"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="#fff" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -24,6 +24,7 @@ import com.wuliwei.newbilibili.activity.BannerWebActivity;
 import com.wuliwei.newbilibili.activity.HuaTiActivity;
 import com.wuliwei.newbilibili.activity.OriginalActivity;
 import com.wuliwei.newbilibili.activity.SearchActivity;
+import com.wuliwei.newbilibili.activity.ShoppingActivity;
 import com.wuliwei.newbilibili.base.BaseFragment;
 import com.wuliwei.newbilibili.bean.FindBean;
 import com.wuliwei.newbilibili.bean.ShopBean;
@@ -221,7 +222,9 @@ public class FindFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.ll_game:
-                Toast.makeText(context, "游戏", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "游戏", Toast.LENGTH_SHORT).show();
+                intent = new Intent(context, ShoppingActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_shop:
 //                intent = new Intent(context, ShoppingActivity.class);

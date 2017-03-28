@@ -113,6 +113,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(ShoppingHomeDownBean.ResultBean down) {
+
             //设置适配器
             if(down != null && down.getRecords().size() > 0) {
                 adapter = new ShopDownAdapter(mContext,down);

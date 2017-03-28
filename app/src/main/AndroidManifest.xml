@@ -67,7 +67,8 @@
         <activity android:name=".activity.HuanCunActivity" />
         <activity android:name=".view.video.DanmkuVideoActivity" />
         <activity android:name=".activity.ShoppingActivity" />
-        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.GoodsInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
-                android:inputType="textPassword"
+                android:inputType="number|text"
                 android:textColor="#ffffff" />
 
         </android.support.design.widget.TextInputLayout>

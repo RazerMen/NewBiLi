@@ -14,8 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anye.greendao.gen.UserDao;
 import com.wuliwei.newbilibili.R;
+import com.wuliwei.newbilibili.app.MyApplication;
 import com.wuliwei.newbilibili.base.BaseActivity;
+import com.wuliwei.newbilibili.uitls.User;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,6 +56,11 @@ public class LoginActivity extends BaseActivity {
     Button btnZhuce;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    private String userName;
+    private String passWord;
+    private UserDao userDao;
+    private List<User> users;
+    private User user;
 
     @Override
     protected void initListener() {
@@ -61,6 +71,9 @@ public class LoginActivity extends BaseActivity {
     protected void initData() {
         name.setHint("请输入用户名");
         mima.setHint("请输入密码");
+
+        userDao = MyApplication.getInstances().getDaoSession().getUserDao();
+
     }
 
     private void initShow() {
@@ -68,6 +81,7 @@ public class LoginActivity extends BaseActivity {
         initDianJi();
 
         initPanDuan();
+
     }
 
     private void initDianJi() {
@@ -99,7 +113,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!TextUtils.isEmpty(etUserName.getText().toString()) && !TextUtils.isEmpty(etPassWord.getText().toString())) {
+                if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
                     btnLogin.setClickable(true);
                     btnLogin.setBackgroundColor(Color.parseColor("#FB7299"));
 
@@ -123,7 +137,7 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!TextUtils.isEmpty(etUserName.getText().toString()) && !TextUtils.isEmpty(etPassWord.getText().toString())) {
+                if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
                     btnLogin.setClickable(true);
                     btnLogin.setBackgroundColor(Color.parseColor("#FB7299"));
 
@@ -164,7 +178,19 @@ public class LoginActivity extends BaseActivity {
             case R.id.iv_right:
                 break;
             case R.id.btn_zhuce:
-                Toast.makeText(LoginActivity.this, "注册", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, "注册", Toast.LENGTH_SHORT).show();
+                userName = etUserName.getText().toString().trim();
+                passWord = etPassWord.getText().toString().trim();
+                if (userName != null && userName.length() > 0 || passWord != null && passWord.length() > 0) {
+                    user = new User(userName, passWord);
+                    userDao.insert(user);
+                    etUserName.setText(user.getUserName());
+                    etPassWord.setText(user.getPassWord());
+                    Toast.makeText(LoginActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.btn_login:
                 Toast.makeText(LoginActivity.this, "登录", Toast.LENGTH_SHORT).show();
