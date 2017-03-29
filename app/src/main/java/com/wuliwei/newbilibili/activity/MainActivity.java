@@ -138,7 +138,8 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(MainActivity.this, "游戏", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_down:
-                Toast.makeText(MainActivity.this, "下载", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "下载", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.iv_select:
 //                Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();

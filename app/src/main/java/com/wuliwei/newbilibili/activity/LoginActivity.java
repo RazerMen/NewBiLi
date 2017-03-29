@@ -1,5 +1,6 @@
 package com.wuliwei.newbilibili.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
@@ -60,7 +61,7 @@ public class LoginActivity extends BaseActivity {
     private String passWord;
     private UserDao userDao;
     private List<User> users;
-    private User user;
+
 
     @Override
     protected void initListener() {
@@ -72,8 +73,31 @@ public class LoginActivity extends BaseActivity {
         name.setHint("请输入用户名");
         mima.setHint("请输入密码");
 
+        etUserName.setSelection(etUserName.getText().length());
+        etPassWord.setSelection(etPassWord.getText().length());
+
         userDao = MyApplication.getInstances().getDaoSession().getUserDao();
 
+
+    }
+
+    private void initZhuCe() {
+        userName = etUserName.getText().toString().trim();
+        passWord = etPassWord.getText().toString().trim();
+
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassWord(passWord);
+
+        UserDao userDao = MyApplication.getInstances().getDaoSession().getUserDao();
+        long insert = userDao.insert(user);
+        if (insert == 1) {
+            Toast.makeText(LoginActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+        } else if (insert == -1) {
+            Toast.makeText(LoginActivity.this, "用户名已经存在", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(LoginActivity.this, "!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initShow() {
@@ -113,6 +137,8 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                userName = etUserName.getText().toString().trim();
+                passWord = etPassWord.getText().toString().trim();
                 if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
                     btnLogin.setClickable(true);
                     btnLogin.setBackgroundColor(Color.parseColor("#FB7299"));
@@ -137,6 +163,8 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                userName = etUserName.getText().toString().trim();
+                passWord = etPassWord.getText().toString().trim();
                 if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
                     btnLogin.setClickable(true);
                     btnLogin.setBackgroundColor(Color.parseColor("#FB7299"));
@@ -178,22 +206,41 @@ public class LoginActivity extends BaseActivity {
             case R.id.iv_right:
                 break;
             case R.id.btn_zhuce:
-//                Toast.makeText(LoginActivity.this, "注册", Toast.LENGTH_SHORT).show();
-                userName = etUserName.getText().toString().trim();
-                passWord = etPassWord.getText().toString().trim();
-                if (userName != null && userName.length() > 0 || passWord != null && passWord.length() > 0) {
-                    user = new User(userName, passWord);
+                users = userDao.loadAll();
+                String userNames = etUserName.getText().toString().trim();
+                if (users.size() == 0) {
+                    User user = new User(etUserName.getText().toString().trim(), etPassWord.getText().toString().trim());
                     userDao.insert(user);
-                    etUserName.setText(user.getUserName());
-                    etPassWord.setText(user.getPassWord());
                     Toast.makeText(LoginActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
-                    Toast.makeText(LoginActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < users.size(); i++) {
+                        if (userNames.equals(users.get(i).getUserName().toString())) {
+                            Toast.makeText(LoginActivity.this, "该帐号已经存在", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                    User user = new User(etUserName.getText().toString().trim(), etPassWord.getText().toString().trim());
+                    userDao.insert(user);
+                    Toast.makeText(LoginActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
             case R.id.btn_login:
-                Toast.makeText(LoginActivity.this, "登录", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, "登录", Toast.LENGTH_SHORT).show();
+                userName = etUserName.getText().toString().trim();
+                passWord = etPassWord.getText().toString().trim();
+                List<User> user = userDao.loadAll();
+                for (User list : user) {
+                    String userName1 = list.getUserName();
+                    String number = list.getPassWord();
+                    if (userName.equals(userName1) && passWord.equals(number)) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return;
+                    }
+                    Toast.makeText(LoginActivity.this, "账户或密码错误", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
