@@ -72,33 +72,13 @@ public class ShoppingActivity extends BaseActivity {
 
     private void switchFragment(Fragment currentFragment) {
 
-        // 如果之前的和当前的Fragment不相同，不是同一个页面的时候
-        if (tempFragment != currentFragment) {
+        //得到FragmentManager:代表一个事物
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-            //得到FragmentManager:代表一个事物
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fl_main, currentFragment);
 
-            if (!currentFragment.isAdded()) {
-                //隐藏缓存
-                if (tempFragment != null) {
-                    ft.hide(tempFragment);
-                }
-                //添加
-                ft.add(R.id.fl_main, currentFragment);
-            } else {
-                //隐藏缓存
-                if (tempFragment != null) {
-                    ft.hide(tempFragment);
-                }
-                //显示
-                ft.show(currentFragment);
-            }
-            //提交事物
-            ft.commit();
+        ft.commit();
 
-            //把当前的 赋值成 缓存的
-            tempFragment = currentFragment;
-        }
     }
 
     @Override

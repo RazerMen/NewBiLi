@@ -16,6 +16,9 @@ public class User {
     @Id
     private String userName;
     private String passWord;
+
+
+
     public String getPassWord() {
         return this.passWord;
     }
@@ -28,6 +31,7 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     @Generated(hash = 2134531238)
     public User(String userName, String passWord) {
         this.userName = userName;

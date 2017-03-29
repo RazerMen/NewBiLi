@@ -74,6 +74,7 @@ public class ShopDownAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 GoodsBean goodsBean = new GoodsBean();
+                goodsBean.setId((long) recordsBean.getSkuId());
                 goodsBean.setTitle(recordsBean.getTitle());
                 goodsBean.setPrice(recordsBean.getSalvePrice() + "");
                 goodsBean.setImg(recordsBean.getImgUrl());
