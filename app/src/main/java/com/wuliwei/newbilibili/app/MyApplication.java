@@ -8,6 +8,8 @@ import com.anye.greendao.gen.DaoMaster;
 import com.anye.greendao.gen.DaoSession;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by
  * 武立伟
@@ -33,6 +35,9 @@ public class MyApplication extends Application {
         setDatabase();
 
         ZXingLibrary.initDisplayOpinion(this);
+
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
 
     }
 
