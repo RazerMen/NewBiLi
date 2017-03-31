@@ -237,10 +237,11 @@ public class LoginActivity extends BaseActivity {
                     if (userName.equals(userName1) && passWord.equals(number)) {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Toast.makeText(LoginActivity.this, "账户或密码错误", Toast.LENGTH_SHORT).show();
                 }
+                Toast.makeText(LoginActivity.this, "登录失败，账号或密码错误", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

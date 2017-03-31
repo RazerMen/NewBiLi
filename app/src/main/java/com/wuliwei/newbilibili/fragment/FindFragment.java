@@ -150,6 +150,13 @@ public class FindFragment extends BaseFragment {
             @Override
             public void onClick(TagFlowLayout parent, View view, int position) {
                 Toast.makeText(context, "click==" + ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+//                String str = AppNet.SOUSUO + keyword + AppNet.SUOSOUDOWN;
+//                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+//                intent.putExtra("link", str);
+//                intent.putExtra("title", keyword);
+//                startActivity(intent);
+
+//                startActivity(intent);
             }
 
             @Override

@@ -87,6 +87,7 @@ public class MainActivity extends BaseActivity {
         initFragnment();
         initAdapter();
         searchFragment = SearchFragment.newInstance();
+//        setSupportActionBar(toolBar);
     }
 
     private void initAdapter() {
@@ -139,7 +140,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.iv_down:
 //                Toast.makeText(MainActivity.this, "下载", Toast.LENGTH_SHORT).show();
-
+                intent = new Intent(MainActivity.this, HuanCunActivity.class);
+                startActivity(intent);
                 break;
             case R.id.iv_select:
 //                Toast.makeText(MainActivity.this, "搜索", Toast.LENGTH_SHORT).show();

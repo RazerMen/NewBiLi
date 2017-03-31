@@ -3,6 +3,8 @@
     android:id="@+id/rl"
     android:layout_width="match_parent"
     android:layout_height="200dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:fitsSystemWindows="true"
     android:background="#3B3B3B"
     android:orientation="vertical">
     

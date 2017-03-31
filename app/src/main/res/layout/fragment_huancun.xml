@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#3B3B3B"
     android:layout_height="match_parent">
 
     <ImageView
@@ -9,5 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="140dp"
         android:src="@drawable/ic_load_empty" />
+
+    <TextView
+        android:id="@+id/tv_neicun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#3B3B3B"
+        android:text="111222333"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
 
 </RelativeLayout>
