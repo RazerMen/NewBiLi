@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2C2C2C"
     android:orientation="vertical"
-    tools:context="com.wuliwei.newbilibili.activity.GoodsInfoActivity">
+    tools:context=".view.activity.GoodsInfoActivity">
 
     <!--标题栏-->
     <LinearLayout
@@ -75,7 +75,7 @@
         android:layout_alignParentBottom="true"
         android:background="#3B3B3B">
 
-        <com.wuliwei.newbilibili.view.AddSubView
+        <com.wuliwei.newbilibili.view.MyView.AddSubView
             android:id="@+id/addSubView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

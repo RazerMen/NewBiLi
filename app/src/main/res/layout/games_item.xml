@@ -40,7 +40,7 @@
 
     </LinearLayout>
 
-    <com.wuliwei.newbilibili.view.MyGridView
+    <com.wuliwei.newbilibili.view.MyView.MyGridView
         android:id="@+id/myGridViewGC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

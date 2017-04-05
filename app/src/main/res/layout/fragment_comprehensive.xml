@@ -11,7 +11,7 @@
         android:background="#2C2C2C"
         android:orientation="vertical">
 
-        <com.wuliwei.newbilibili.view.MyGridView
+        <com.wuliwei.newbilibili.view.MyView.MyGridView
             android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

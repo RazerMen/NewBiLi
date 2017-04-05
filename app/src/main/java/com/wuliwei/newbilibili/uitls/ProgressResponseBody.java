@@ -1,6 +1,6 @@
 package com.wuliwei.newbilibili.uitls;
 
-import com.wuliwei.newbilibili.listener.ResponseListener;
+import com.wuliwei.newbilibili.view.listener.ResponseListener;
 
 import java.io.IOException;
 

@@ -82,7 +82,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".view.activity.WelcomeActivity"
             android:configChanges="screenSize|orientation|keyboardHidden"
             android:launchMode="singleInstance">
             <intent-filter>
@@ -103,17 +103,17 @@
 
         </activity>
 
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.BannerWebActivity" />
-        <activity android:name=".activity.HuaTiActivity" />
-        <activity android:name=".activity.OriginalActivity" />
-        <activity android:name=".activity.AllRegionActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.HuanCunActivity" />
-        <activity android:name=".view.video.DanmkuVideoActivity" />
-        <activity android:name=".activity.ShoppingActivity" />
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.GoodsInfoActivity"/>
+        <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.BannerWebActivity" />
+        <activity android:name=".view.activity.HuaTiActivity" />
+        <activity android:name=".view.activity.OriginalActivity" />
+        <activity android:name=".view.activity.AllRegionActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.HuanCunActivity" />
+        <activity android:name=".uitls.video.DanmkuVideoActivity" />
+        <activity android:name=".view.activity.ShoppingActivity" />
+        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name=".view.activity.GoodsInfoActivity"/>
 
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
@@ -193,7 +193,7 @@
 
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
-            android:name="com.wuliwei.newbilibili.view.MyReceiver"
+            android:name=".view.MyView.MyReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>

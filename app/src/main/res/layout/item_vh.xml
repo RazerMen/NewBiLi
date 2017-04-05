@@ -18,7 +18,7 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <com.wuliwei.newbilibili.view.MyProgressBar
+        <com.wuliwei.newbilibili.view.MyView.MyProgressBar
             android:id="@+id/progresss"
             android:layout_width="50dp"
             android:layout_height="50dp"

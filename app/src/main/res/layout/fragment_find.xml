@@ -45,72 +45,38 @@
 
         </LinearLayout>
 
-<!--        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="大家都在搜"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />-->
+        <!--        <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="大家都在搜"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />-->
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <!--    <com.zhy.view.flowlayout.TagFlowLayout
-                android:id="@+id/tagFlowLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                zhy:max_select="-1" />-->
+            <!--    <com.zhy.view.flowlayout.TagFlowLayout
+                    android:id="@+id/tagFlowLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    zhy:max_select="-1" />-->
 
             <com.github.hymanme.tagflowlayout.TagFlowLayout
                 android:id="@+id/tagFlowLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:expandHint="查看更多"
-                app:foldHint="点击缩回"/>
+                app:foldHint="点击缩回" />
 
         </android.support.v4.widget.NestedScrollView>
 
-        <!--<LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#3B3B3B" />
-
-            <TextView
-                android:id="@+id/tv_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_group_discover_more_grey"
-                android:drawablePadding="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="查看更多"
-                android:textColor="#ffffff"
-                android:textSize="10sp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#3B3B3B" />
-
-        </LinearLayout>-->
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/ll_xingqu"
@@ -373,6 +339,6 @@
 
         </LinearLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2C2C2C"
     android:orientation="vertical"
-    tools:context="com.wuliwei.newbilibili.activity.LoginActivity">
+    tools:context=".view.activity.LoginActivity">
 
     <!--标题栏-->
     <LinearLayout

@@ -26,7 +26,7 @@
                 android:background="#3B3B3B"
                 android:orientation="horizontal">
 
-                <com.wuliwei.newbilibili.view.CircleImageView
+                <com.wuliwei.newbilibili.view.MyView.CircleImageView
                     android:id="@+id/iv_head"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -81,7 +81,7 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <com.wuliwei.newbilibili.view.video.DanmakuVideoPlayer
+    <com.wuliwei.newbilibili.uitls.video.DanmakuVideoPlayer
         android:id="@+id/danmaku_player"
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_media_height" />

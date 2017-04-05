@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2C2C2C"
     android:orientation="vertical"
-    tools:context="com.wuliwei.newbilibili.activity.SearchActivity">
+    tools:context=".view.activity.SearchActivity">
 
     <LinearLayout
         android:id="@+id/ll_title"

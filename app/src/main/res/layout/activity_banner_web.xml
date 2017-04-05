@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wuliwei.newbilibili.activity.BannerWebActivity">
+    tools:context=".view.activity.BannerWebActivity">
 
     <!--&lt;!&ndash;标题栏&ndash;&gt;-->
     <!--<LinearLayout-->

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.wuliwei.newbilibili.view.MyGridView
+    <com.wuliwei.newbilibili.view.MyView.MyGridView
         android:id="@+id/gv_danji"
         android:layout_width="wrap_content"
         android:layout_height="150dp"

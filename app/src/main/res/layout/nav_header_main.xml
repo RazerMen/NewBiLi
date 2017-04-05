@@ -8,7 +8,7 @@
     android:background="#3B3B3B"
     android:orientation="vertical">
     
-    <com.wuliwei.newbilibili.view.CircleImageView
+    <com.wuliwei.newbilibili.view.MyView.CircleImageView
         android:id="@+id/cehua_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
