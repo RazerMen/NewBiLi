@@ -94,7 +94,7 @@ public class DirectseedingFragment extends BaseFragment1 {
             adapter = new HomeAdapter(context, data);
         } else {
             adapter.notifyDataSetChanged();
-        }
+    }
         if (!isRefresh) {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));

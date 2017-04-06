@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.view.activity.LoginActivity;
-import com.wuliwei.newbilibili.view.base.BaseFragment;
+import com.wuliwei.newbilibili.view.base.BaseFragment1;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +20,7 @@ import butterknife.OnClick;
  * 作用：动态的Fragment
  */
 
-public class DynamicFragment extends BaseFragment {
+public class DynamicFragment extends BaseFragment1 {
 
     @BindView(R.id.btn_login)
     Button btnLogin;
@@ -33,7 +33,23 @@ public class DynamicFragment extends BaseFragment {
     }
 
     @Override
-    public void initData() {
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public String getUrl() {
+        return null;
+    }
+
+    @Override
+    protected void initData(String json, String error) {
+
     }
 
     @OnClick(R.id.btn_login)

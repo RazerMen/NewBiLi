@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.wuliwei.newbilibili.view.base.BaseFragment;
+import com.wuliwei.newbilibili.view.base.BaseFragment1;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ import java.util.ArrayList;
  */
 
 public class RecommendAdapter extends FragmentPagerAdapter {
-    private final ArrayList<BaseFragment> datas;
+    private final ArrayList<BaseFragment1> datas;
     private String[] titles = new String[]{"综合", "动态"};
 
-    public RecommendAdapter(FragmentManager fm, ArrayList<BaseFragment> fragments) {
+    public RecommendAdapter(FragmentManager fm, ArrayList<BaseFragment1> fragments) {
         super(fm);
         this.datas = fragments;
     }

@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.presenter.adapter.RecommendAdapter;
-import com.wuliwei.newbilibili.view.base.BaseFragment;
+import com.wuliwei.newbilibili.view.base.BaseFragment1;
 
 import java.util.ArrayList;
 
@@ -17,14 +17,14 @@ import butterknife.ButterKnife;
  * Created by 82390 on 2017/3/22.
  */
 
-public class RecommendFragment extends BaseFragment {
+public class RecommendFragment extends BaseFragment1 {
 
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
-    private ArrayList<BaseFragment> fragments;
+    private ArrayList<BaseFragment1> fragments;
 
     private RecommendAdapter adapter;
 
@@ -36,10 +36,26 @@ public class RecommendFragment extends BaseFragment {
     }
 
     @Override
-    public void initData() {
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public String getUrl() {
+        return null;
+    }
+
+    @Override
+    protected void initData(String json, String error) {
         initFragnment();
         initAdapter();
     }
+
 
     private void initAdapter() {
         adapter = new RecommendAdapter(getChildFragmentManager(), fragments);

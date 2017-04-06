@@ -2,6 +2,7 @@ package com.wuliwei.newbilibili.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,33 +20,29 @@ import com.github.hymanme.tagflowlayout.tags.DefaultTagView;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.wuliwei.newbilibili.R;
+import com.wuliwei.newbilibili.bean.FindBean;
+import com.wuliwei.newbilibili.uitls.AppNet;
 import com.wuliwei.newbilibili.view.activity.AllRegionActivity;
 import com.wuliwei.newbilibili.view.activity.BannerWebActivity;
 import com.wuliwei.newbilibili.view.activity.HuaTiActivity;
 import com.wuliwei.newbilibili.view.activity.OriginalActivity;
 import com.wuliwei.newbilibili.view.activity.SearchActivity;
 import com.wuliwei.newbilibili.view.activity.ShoppingActivity;
-import com.wuliwei.newbilibili.view.base.BaseFragment;
-import com.wuliwei.newbilibili.bean.FindBean;
-import com.wuliwei.newbilibili.bean.ShopBean;
-import com.wuliwei.newbilibili.uitls.AppNet;
+import com.wuliwei.newbilibili.view.base.BaseFragment1;
 import com.wyt.searchbox.SearchFragment;
 import com.wyt.searchbox.custom.IOnSearchClickListener;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by 82390 on 2017/3/22.
  */
 
-public class FindFragment extends BaseFragment {
+public class FindFragment extends BaseFragment1 {
 
     @BindView(R.id.tagFlowLayout)
     TagFlowLayout tagFlowLayout;
@@ -70,13 +67,15 @@ public class FindFragment extends BaseFragment {
     @BindView(R.id.ib_sao)
     ImageButton ibSao;
 
-    private List<FindBean.DataBean.ListBean> list;
-    private ShopBean.ResultBean result;
+//    private ShopBean.ResultBean result;
     private SearchFragment searchFragment;
+
     /**
      * 扫描跳转Activity RequestCode
      */
     public static final int REQUEST_CODE = 111;
+    private MyTagAdapter tagAdapter;
+    private List<FindBean.DataBean.ListBean> list;
 
     @Override
     public View initView() {
@@ -87,49 +86,45 @@ public class FindFragment extends BaseFragment {
     }
 
     @Override
-    public void initData() {
-        getDataFromNet();
+    public void showLoading() {
+
     }
 
-    private void getDataFromNet() {
-        OkHttpUtils.get().url(AppNet.FIND_URL).id(100).build().execute(new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Log.e("TAG", "失败" + e.getMessage());
-            }
+    @Override
+    public void hideLoading() {
 
-            @Override
-            public void onResponse(String response, int id) {
-                proceessData(response);
-            }
-        });
-        OkHttpUtils.get().url(AppNet.SHOP_URL).id(100).build().execute(new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                Log.e("TAG", "失败" + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(String response, int id) {
-                okhttp(response);
-            }
-        });
     }
 
-    private void proceessData(String json) {
-        FindBean findBean = JSON.parseObject(json, FindBean.class);
+    @Override
+    public String getUrl() {
+        return AppNet.FIND_URL;
+    }
 
-        list = findBean.getData().getList();
+    @Override
+    protected void initData(String json, String error) {
+        if(TextUtils.isEmpty(json)) {
+            Log.e("TAG", "FindFragment initData()" + error);
+        }else {
+            FindBean findBean = JSON.parseObject(json, FindBean.class);
+            int code = findBean.getCode();
+            if(code == 0) {
+                list = findBean.getData().getList();
+                setAdapter(list);
+            }else {
+                Log.e("TAG", "联网失败");
+            }
+        }
+    }
 
-        Log.e("TAG", "111111111==" + list);
-
+    private void setAdapter(List<FindBean.DataBean.ListBean> list) {
+        if(tagAdapter == null) {
+            tagAdapter = new MyTagAdapter();
+        }else {
+            tagAdapter.notifyDataSetChanged();
+        }
         initColor();
 
-        //设置适配器
-        //设置adapter
-        MyTagAdapter tagAdapter = new MyTagAdapter();
         tagFlowLayout.setTagAdapter(tagAdapter);
-
 
         //给adapter绑定数据
         tagAdapter.addAllTags(list);
@@ -138,11 +133,63 @@ public class FindFragment extends BaseFragment {
     }
 
 
-    private void okhttp(String json) {
-        ShopBean shopBean = JSON.parseObject(json, ShopBean.class);
-        result = shopBean.getResult();
-        Log.e("TAG", "222222222" + result);
-    }
+//    @Override
+//    public void initData() {
+//        getDataFromNet();
+//    }
+
+//    private void getDataFromNet() {
+//        OkHttpUtils.get().url(AppNet.FIND_URL).id(100).build().execute(new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Log.e("TAG", "失败" + e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(String response, int id) {
+//                proceessData(response);
+//            }
+//        });
+
+//        OkHttpUtils.get().url(AppNet.SHOP_URL).id(100).build().execute(new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                Log.e("TAG", "失败" + e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(String response, int id) {
+//                okhttp(response);
+//            }
+//        });
+//    }
+
+//    private void proceessData(String json) {
+//        FindBean findBean = JSON.parseObject(json, FindBean.class);
+//
+//        list = findBean.getData().getList();
+//
+//        Log.e("TAG", "111111111==" + list);
+//
+//        initColor();
+//
+//        //设置适配器
+//        //设置adapter
+//        tagAdapter = new MyTagAdapter();
+//        tagFlowLayout.setTagAdapter(tagAdapter);
+//
+//        //给adapter绑定数据
+//        tagAdapter.addAllTags(list);
+//
+//        initListener();
+//    }
+
+
+//    private void okhttp(String json) {
+//        ShopBean shopBean = JSON.parseObject(json, ShopBean.class);
+//        result = shopBean.getResult();
+//        Log.e("TAG", "222222222" + result);
+//    }
 
     private void initListener() {
         //设置监听(单击和长按事件)

@@ -24,9 +24,13 @@ import com.wuliwei.newbilibili.presenter.adapter.DirectseedingAdapter;
 import com.wuliwei.newbilibili.uitls.AppNet;
 import com.wuliwei.newbilibili.uitls.StatusBarCompat;
 import com.wuliwei.newbilibili.view.MyView.CircleImageView;
-import com.wuliwei.newbilibili.view.base.BaseActivity1;
+import com.wuliwei.newbilibili.view.base.BaseActivity;
 import com.wuliwei.newbilibili.view.base.BaseFragment1;
 import com.wuliwei.newbilibili.view.fragment.DirectseedingFragment;
+import com.wuliwei.newbilibili.view.fragment.FindFragment;
+import com.wuliwei.newbilibili.view.fragment.PartitionFragment;
+import com.wuliwei.newbilibili.view.fragment.RecommendFragment;
+import com.wuliwei.newbilibili.view.fragment.TrackFragment;
 import com.wyt.searchbox.SearchFragment;
 import com.wyt.searchbox.custom.IOnSearchClickListener;
 
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity1 {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.iv_home)
     ImageView ivHome;
@@ -67,28 +71,10 @@ public class MainActivity extends BaseActivity1 {
     AppBarLayout appBar;
 
     private ArrayList<BaseFragment1> fragments;
-//    List<Fragment>fragments;
 
     private DirectseedingAdapter adapter;
 
     private SearchFragment searchFragment;
-
-    @Override
-    public String getUrl() {
-        return null;
-    }
-
-    @Override
-    protected void initData(String json, String error) {
-        fragments = new ArrayList<>();
-        fragments.add(new DirectseedingFragment());
-//        fragments.add(new RecommendFragment());
-//        fragments.add(new TrackFragment());
-//        fragments.add(new PartitionFragment());
-//        fragments.add(new FindFragment());
-
-        initAdapter();
-    }
 
     @Override
     protected void initListener() {
@@ -102,43 +88,36 @@ public class MainActivity extends BaseActivity1 {
 
     }
 
-//    @Override
-//    protected void initData() {
-//        setSupportActionBar(toolBar);
-//        StatusBarCompat.compat(this, getResources().getColor(R.color.status_bar_color));
-//        initFragnment();
-//        initAdapter();
-//        searchFragment = SearchFragment.newInstance();
-//    }
+    @Override
+    protected void initData() {
+        setSupportActionBar(toolBar);
+        StatusBarCompat.compat(this, getResources().getColor(R.color.status_bar_color));
+        initFragnment();
+        initAdapter();
+        searchFragment = SearchFragment.newInstance();
+    }
+
+    private void initFragnment() {
+        fragments = new ArrayList<>();
+        fragments.add(new DirectseedingFragment());
+        fragments.add(new RecommendFragment());
+        fragments.add(new TrackFragment());
+        fragments.add(new PartitionFragment());
+        fragments.add(new FindFragment());
+    }
 
     private void initAdapter() {
-
         adapter = new DirectseedingAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
 
         //关联viewpager
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-
-
     }
-
-//    private void initFragnment() {
-//    }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
     }
 
     @OnClick({R.id.iv_home, R.id.iv_head, R.id.tv_no_login, R.id.iv_game, R.id.iv_down, R.id.iv_select})
@@ -232,7 +211,6 @@ public class MainActivity extends BaseActivity1 {
             }
         });
     }
-
 
     /**
      * 双击退出
