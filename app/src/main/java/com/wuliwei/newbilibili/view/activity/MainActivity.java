@@ -138,7 +138,9 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.iv_game:
-                Toast.makeText(MainActivity.this, "游戏", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "游戏", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this,BluetoothActivity.class);
+                startActivity(intent);
                 break;
             case R.id.iv_down:
 //                Toast.makeText(MainActivity.this, "下载", Toast.LENGTH_SHORT).show();
