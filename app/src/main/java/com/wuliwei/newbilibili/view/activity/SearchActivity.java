@@ -12,10 +12,7 @@ import android.widget.Toast;
 import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.presenter.adapter.SearchAdapter;
 import com.wuliwei.newbilibili.view.base.BaseActivity;
-import com.wuliwei.newbilibili.view.base.BaseFragment;
-import com.wuliwei.newbilibili.view.fragment.FJuragment;
-import com.wuliwei.newbilibili.view.fragment.MoveFragment;
-import com.wuliwei.newbilibili.view.fragment.UPZhuFragment;
+import com.wuliwei.newbilibili.view.base.BaseFragment1;
 import com.wuliwei.newbilibili.view.fragment.ZhongHeFragment;
 
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class SearchActivity extends BaseActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
-    private ArrayList<BaseFragment> fragments;
+    private ArrayList<BaseFragment1> fragments;
 
     private SearchAdapter adapter;
 
@@ -71,9 +68,9 @@ public class SearchActivity extends BaseActivity {
     private void initFragment() {
         fragments = new ArrayList<>();
         fragments.add(new ZhongHeFragment());
-        fragments.add(new FJuragment());
-        fragments.add(new UPZhuFragment());
-        fragments.add(new MoveFragment());
+//        fragments.add(new FJuragment());
+//        fragments.add(new UPZhuFragment());
+//        fragments.add(new MoveFragment());
     }
 
     @Override

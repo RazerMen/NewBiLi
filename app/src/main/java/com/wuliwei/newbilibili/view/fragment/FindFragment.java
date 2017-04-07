@@ -67,15 +67,15 @@ public class FindFragment extends BaseFragment1 {
     @BindView(R.id.ib_sao)
     ImageButton ibSao;
 
-//    private ShopBean.ResultBean result;
     private SearchFragment searchFragment;
+
+    private List<FindBean.DataBean.ListBean> list;
 
     /**
      * 扫描跳转Activity RequestCode
      */
     public static final int REQUEST_CODE = 111;
     private MyTagAdapter tagAdapter;
-    private List<FindBean.DataBean.ListBean> list;
 
     @Override
     public View initView() {
@@ -131,65 +131,6 @@ public class FindFragment extends BaseFragment1 {
 
         initListener();
     }
-
-
-//    @Override
-//    public void initData() {
-//        getDataFromNet();
-//    }
-
-//    private void getDataFromNet() {
-//        OkHttpUtils.get().url(AppNet.FIND_URL).id(100).build().execute(new StringCallback() {
-//            @Override
-//            public void onError(Call call, Exception e, int id) {
-//                Log.e("TAG", "失败" + e.getMessage());
-//            }
-//
-//            @Override
-//            public void onResponse(String response, int id) {
-//                proceessData(response);
-//            }
-//        });
-
-//        OkHttpUtils.get().url(AppNet.SHOP_URL).id(100).build().execute(new StringCallback() {
-//            @Override
-//            public void onError(Call call, Exception e, int id) {
-//                Log.e("TAG", "失败" + e.getMessage());
-//            }
-//
-//            @Override
-//            public void onResponse(String response, int id) {
-//                okhttp(response);
-//            }
-//        });
-//    }
-
-//    private void proceessData(String json) {
-//        FindBean findBean = JSON.parseObject(json, FindBean.class);
-//
-//        list = findBean.getData().getList();
-//
-//        Log.e("TAG", "111111111==" + list);
-//
-//        initColor();
-//
-//        //设置适配器
-//        //设置adapter
-//        tagAdapter = new MyTagAdapter();
-//        tagFlowLayout.setTagAdapter(tagAdapter);
-//
-//        //给adapter绑定数据
-//        tagAdapter.addAllTags(list);
-//
-//        initListener();
-//    }
-
-
-//    private void okhttp(String json) {
-//        ShopBean shopBean = JSON.parseObject(json, ShopBean.class);
-//        result = shopBean.getResult();
-//        Log.e("TAG", "222222222" + result);
-//    }
 
     private void initListener() {
         //设置监听(单击和长按事件)

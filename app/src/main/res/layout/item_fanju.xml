@@ -8,7 +8,7 @@
         android:id="@+id/item_live_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="#3B3B3B"

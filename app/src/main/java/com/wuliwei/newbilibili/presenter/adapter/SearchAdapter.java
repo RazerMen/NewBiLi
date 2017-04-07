@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.wuliwei.newbilibili.view.base.BaseFragment;
+import com.wuliwei.newbilibili.view.base.BaseFragment1;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ import java.util.ArrayList;
  */
 
 public class SearchAdapter extends FragmentPagerAdapter {
-    private final ArrayList<BaseFragment> datas;
+    private final ArrayList<BaseFragment1> datas;
     private String[] titles = new String[]{"综合", "番剧", "UP主", "影视"};
 
-    public SearchAdapter(FragmentManager fm, ArrayList<BaseFragment> fragments) {
+    public SearchAdapter(FragmentManager fm, ArrayList<BaseFragment1> fragments) {
         super(fm);
         this.datas = fragments;
     }
