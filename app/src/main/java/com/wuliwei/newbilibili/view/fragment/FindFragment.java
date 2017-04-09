@@ -23,6 +23,7 @@ import com.wuliwei.newbilibili.R;
 import com.wuliwei.newbilibili.bean.FindBean;
 import com.wuliwei.newbilibili.uitls.AppNet;
 import com.wuliwei.newbilibili.view.activity.AllRegionActivity;
+import com.wuliwei.newbilibili.view.activity.BaiDuMapActivity;
 import com.wuliwei.newbilibili.view.activity.BannerWebActivity;
 import com.wuliwei.newbilibili.view.activity.HuaTiActivity;
 import com.wuliwei.newbilibili.view.activity.OriginalActivity;
@@ -177,7 +178,6 @@ public class FindFragment extends BaseFragment1 {
                         intent.putExtra("link", str);
                         intent.putExtra("title", keyword);
                         startActivity(intent);
-
                     }
                 });
                 searchFragment.show(getFragmentManager(), SearchFragment.TAG);
@@ -201,7 +201,9 @@ public class FindFragment extends BaseFragment1 {
                 startActivity(intent);
                 break;
             case R.id.ll_heiwu:
-                Toast.makeText(context, "小黑屋", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "小黑屋", Toast.LENGTH_SHORT).show();
+                intent = new Intent(context, BaiDuMapActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_yuanchuang:
 //                Toast.makeText(context, "原创", Toast.LENGTH_SHORT).show();

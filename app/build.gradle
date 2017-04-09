@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId "com.wuliwei.newbilibili"
-        minSdkVersion 21
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -43,9 +43,9 @@ dependencies {
     })
     //noinspection GradleCompatible
     compile files('libs/android-async-http-master.jar')
-    testCompile 'junit:junit:4.12'
     compile files('libs/jcore-android_v1.1.1.jar')
     compile files('libs/jpush-android_v3.0.3.jar')
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.jakewharton:butterknife:8.5.1'
@@ -70,4 +70,11 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile files('libs/baidumapapi_base_v4_2_1.jar')
+    compile files('libs/baidumapapi_cloud_v4_2_1.jar')
+    compile files('libs/baidumapapi_map_v4_2_1.jar')
+    compile files('libs/baidumapapi_radar_v4_2_1.jar')
+    compile files('libs/baidumapapi_search_v4_2_1.jar')
+    compile files('libs/baidumapapi_util_v4_2_1.jar')
+    compile files('libs/locSDK_6.13.jar')
 }
